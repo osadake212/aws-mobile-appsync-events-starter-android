@@ -8,11 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+import com.amazonaws.mobileconnectors.appsync.AppSyncSubscriptionCall;
 import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
 import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.api.Subscription;
 import com.apollographql.apollo.exception.ApolloException;
 
 import java.util.ArrayList;
@@ -25,10 +28,8 @@ public class ListEventsActivity extends AppCompatActivity {
     private static final String TAG = ListEventsActivity.class.getSimpleName();
 
     private AWSAppSyncClient mAWSAppSyncClient;
-
-    private List<ListEventsQuery.Item> events = new ArrayList<>();
-    private ListView mListView;
-    private EventsAdapter adapter;
+    private AppSyncSubscriptionCall<NewCommentOnEpisodeSubscription.Data> subscriptionWatcher;
+    private AppSyncSubscriptionCall<NewCommentsOnEpisodeSubscription.Data> subscriptionWatcher2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,63 +37,64 @@ public class ListEventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_events);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        NewCommentOnEpisodeSubscription subscription = NewCommentOnEpisodeSubscription.builder().episode_id(1).build();
+        subscriptionWatcher = ClientFactory.getInstance(this.getApplicationContext()).subscribe(subscription);
+        subscriptionWatcher.execute(new AppSyncSubscriptionCall.Callback<NewCommentOnEpisodeSubscription.Data>() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListEventsActivity.this, AddEventActivity.class);
-                startActivity(intent);
+            public void onResponse(@Nonnull final Response<NewCommentOnEpisodeSubscription.Data> response) {
+                Log.d("-------------", response.data().toString());
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                Log.d("-------------", "fail", e);
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.d("-------------", "completed");
             }
         });
 
-        FloatingActionButton fabRefresh = (FloatingActionButton) findViewById(R.id.refresh);
-        fabRefresh.setOnClickListener(new View.OnClickListener() {
+        NewCommentsOnEpisodeSubscription subscription2 = NewCommentsOnEpisodeSubscription.builder().build();
+        subscriptionWatcher2 = ClientFactory.getInstance(this.getApplicationContext()).subscribe(subscription2);
+        subscriptionWatcher2.execute(new AppSyncSubscriptionCall.Callback<NewCommentsOnEpisodeSubscription.Data>() {
             @Override
-            public void onClick(View view) {
-                query();
+            public void onResponse(@Nonnull final Response<NewCommentsOnEpisodeSubscription.Data> response) {
+                Log.d("-------------", response.data().toString());
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                Log.d("-------------", "fail", e);
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.d("-------------", "completed");
             }
         });
+    }
 
-        adapter = new EventsAdapter(this, events);
-        mListView = (ListView) findViewById(R.id.postsList);
-        mListView.setAdapter(adapter);
+    @Override
+    protected void onStop() {
+        if (subscriptionWatcher != null) {
+            subscriptionWatcher.cancel();
+        }
+        if (subscriptionWatcher2 != null) {
+            subscriptionWatcher2.cancel();
+        }
+        super.onStop();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        query();
     }
-
-    private void query() {
-        if (mAWSAppSyncClient == null) {
-            mAWSAppSyncClient = ClientFactory.getInstance(this);
-        }
-        mAWSAppSyncClient.query(ListEventsQuery.builder().build())
-                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
-                .enqueue(eventsCallback);
-    }
-
-    private GraphQLCall.Callback<ListEventsQuery.Data> eventsCallback = new GraphQLCall.Callback<ListEventsQuery.Data>() {
-        @Override
-        public void onResponse(@Nonnull Response<ListEventsQuery.Data> response) {
-            events = response.data().listEvents().items();
-            adapter.setEvents(events);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d(TAG, "Notifying data set changed");
-                    adapter.notifyDataSetChanged();
-                }
-            });
-        }
-
-        @Override
-        public void onFailure(@Nonnull ApolloException e) {
-            Log.e(TAG, "Failed to make events api call", e);
-            Log.e(TAG, e.getMessage());
-        }
-    };
-
 }

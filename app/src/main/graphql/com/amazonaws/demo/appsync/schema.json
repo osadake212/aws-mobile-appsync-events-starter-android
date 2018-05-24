@@ -17,45 +17,22 @@
                     "description": null,
                     "fields": [
                         {
-                            "name": "getEvent",
-                            "description": "  Get a single event by id.",
+                            "name": "listOsadaAppsyncTestComments",
+                            "description": null,
                             "args": [
                                 {
-                                    "name": "id",
+                                    "name": "episodeId",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
                                         "name": null,
                                         "ofType": {
                                             "kind": "SCALAR",
-                                            "name": "ID",
+                                            "name": "Int",
                                             "ofType": null
                                         }
                                     },
                                     "defaultValue": null
-                                }
-                            ],
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "Event",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "listEvents",
-                            "description": "  Paginate through events.",
-                            "args": [
-                                {
-                                    "name": "limit",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "SCALAR",
-                                        "name": "Int",
-                                        "ofType": null
-                                    },
-                                    "defaultValue": null
                                 },
                                 {
                                     "name": "nextToken",
@@ -70,7 +47,7 @@
                             ],
                             "type": {
                                 "kind": "OBJECT",
-                                "name": "EventConnection",
+                                "name": "OsadaAppsyncTestCommentConnection",
                                 "ofType": null
                             },
                             "isDeprecated": false,
@@ -84,135 +61,7 @@
                 },
                 {
                     "kind": "OBJECT",
-                    "name": "Event",
-                    "description": null,
-                    "fields": [
-                        {
-                            "name": "id",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "SCALAR",
-                                    "name": "ID",
-                                    "ofType": null
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "name",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "where",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "when",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "description",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "comments",
-                            "description": "  Paginate through all comments belonging to an individual post.",
-                            "args": [
-                                {
-                                    "name": "limit",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "SCALAR",
-                                        "name": "Int",
-                                        "ofType": null
-                                    },
-                                    "defaultValue": null
-                                },
-                                {
-                                    "name": "nextToken",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "SCALAR",
-                                        "name": "String",
-                                        "ofType": null
-                                    },
-                                    "defaultValue": null
-                                }
-                            ],
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "CommentConnection",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        }
-                    ],
-                    "inputFields": null,
-                    "interfaces": [],
-                    "enumValues": null,
-                    "possibleTypes": null
-                },
-                {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "description": "Built-in ID",
-                    "fields": null,
-                    "inputFields": null,
-                    "interfaces": null,
-                    "enumValues": null,
-                    "possibleTypes": null
-                },
-                {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "description": "Built-in String",
-                    "fields": null,
-                    "inputFields": null,
-                    "interfaces": null,
-                    "enumValues": null,
-                    "possibleTypes": null
-                },
-                {
-                    "kind": "OBJECT",
-                    "name": "CommentConnection",
+                    "name": "OsadaAppsyncTestCommentConnection",
                     "description": null,
                     "fields": [
                         {
@@ -224,7 +73,7 @@
                                 "name": null,
                                 "ofType": {
                                     "kind": "OBJECT",
-                                    "name": "Comment",
+                                    "name": "OsadaAppsyncTestComment",
                                     "ofType": null
                                 }
                             },
@@ -251,19 +100,19 @@
                 },
                 {
                     "kind": "OBJECT",
-                    "name": "Comment",
+                    "name": "OsadaAppsyncTestComment",
                     "description": null,
                     "fields": [
                         {
-                            "name": "eventId",
-                            "description": "  The id of the comment's parent event.",
+                            "name": "episode_id",
+                            "description": null,
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
                                 "name": null,
                                 "ofType": {
                                     "kind": "SCALAR",
-                                    "name": "ID",
+                                    "name": "Int",
                                     "ofType": null
                                 }
                             },
@@ -271,24 +120,8 @@
                             "deprecationReason": null
                         },
                         {
-                            "name": "commentId",
-                            "description": "  A unique identifier for the comment.",
-                            "args": [],
-                            "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "SCALAR",
-                                    "name": "String",
-                                    "ofType": null
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "content",
-                            "description": "  The comment's content.",
+                            "name": "posted_at",
+                            "description": null,
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -303,8 +136,56 @@
                             "deprecationReason": null
                         },
                         {
-                            "name": "createdAt",
-                            "description": "  The comment timestamp. This field is indexed to enable sorted pagination.",
+                            "name": "text",
+                            "description": null,
+                            "args": [],
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "user_id",
+                            "description": null,
+                            "args": [],
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "user_name",
+                            "description": null,
+                            "args": [],
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "user_icon_image_url",
+                            "description": null,
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -335,41 +216,12 @@
                     "possibleTypes": null
                 },
                 {
-                    "kind": "OBJECT",
-                    "name": "EventConnection",
-                    "description": null,
-                    "fields": [
-                        {
-                            "name": "items",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "LIST",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "Event",
-                                    "ofType": null
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "nextToken",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        }
-                    ],
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "description": "Built-in String",
+                    "fields": null,
                     "inputFields": null,
-                    "interfaces": [],
+                    "interfaces": null,
                     "enumValues": null,
                     "possibleTypes": null
                 },
@@ -379,11 +231,25 @@
                     "description": null,
                     "fields": [
                         {
-                            "name": "createEvent",
-                            "description": "  Create a single event.",
+                            "name": "createOsadaAppsyncTestComment",
+                            "description": null,
                             "args": [
                                 {
-                                    "name": "name",
+                                    "name": "episode_id",
+                                    "description": null,
+                                    "type": {
+                                        "kind": "NON_NULL",
+                                        "name": null,
+                                        "ofType": {
+                                            "kind": "SCALAR",
+                                            "name": "Int",
+                                            "ofType": null
+                                        }
+                                    },
+                                    "defaultValue": null
+                                },
+                                {
+                                    "name": "posted_at",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
@@ -397,7 +263,7 @@
                                     "defaultValue": null
                                 },
                                 {
-                                    "name": "when",
+                                    "name": "text",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
@@ -411,7 +277,21 @@
                                     "defaultValue": null
                                 },
                                 {
-                                    "name": "where",
+                                    "name": "user_id",
+                                    "description": null,
+                                    "type": {
+                                        "kind": "NON_NULL",
+                                        "name": null,
+                                        "ofType": {
+                                            "kind": "SCALAR",
+                                            "name": "Int",
+                                            "ofType": null
+                                        }
+                                    },
+                                    "defaultValue": null
+                                },
+                                {
+                                    "name": "user_name",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
@@ -425,7 +305,7 @@
                                     "defaultValue": null
                                 },
                                 {
-                                    "name": "description",
+                                    "name": "user_icon_image_url",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
@@ -441,25 +321,25 @@
                             ],
                             "type": {
                                 "kind": "OBJECT",
-                                "name": "Event",
+                                "name": "OsadaAppsyncTestComment",
                                 "ofType": null
                             },
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
-                            "name": "deleteEvent",
-                            "description": "  Delete a single event by id.",
+                            "name": "createOsadaAppsyncTestComments",
+                            "description": null,
                             "args": [
                                 {
-                                    "name": "id",
+                                    "name": "comments",
                                     "description": null,
                                     "type": {
-                                        "kind": "NON_NULL",
+                                        "kind": "LIST",
                                         "name": null,
                                         "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "ID",
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "OsadaAppsyncTestCommentInput",
                                             "ofType": null
                                         }
                                     },
@@ -467,64 +347,13 @@
                                 }
                             ],
                             "type": {
-                                "kind": "OBJECT",
-                                "name": "Event",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "commentOnEvent",
-                            "description": "  Comment on an event.",
-                            "args": [
-                                {
-                                    "name": "eventId",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "NON_NULL",
-                                        "name": null,
-                                        "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "ID",
-                                            "ofType": null
-                                        }
-                                    },
-                                    "defaultValue": null
-                                },
-                                {
-                                    "name": "content",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "NON_NULL",
-                                        "name": null,
-                                        "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "String",
-                                            "ofType": null
-                                        }
-                                    },
-                                    "defaultValue": null
-                                },
-                                {
-                                    "name": "createdAt",
-                                    "description": null,
-                                    "type": {
-                                        "kind": "NON_NULL",
-                                        "name": null,
-                                        "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "String",
-                                            "ofType": null
-                                        }
-                                    },
-                                    "defaultValue": null
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "OsadaAppsyncTestComment",
+                                    "ofType": null
                                 }
-                            ],
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "Comment",
-                                "ofType": null
                             },
                             "isDeprecated": false,
                             "deprecationReason": null
@@ -536,33 +365,151 @@
                     "possibleTypes": null
                 },
                 {
+                    "kind": "INPUT_OBJECT",
+                    "name": "OsadaAppsyncTestCommentInput",
+                    "description": null,
+                    "fields": null,
+                    "inputFields": [
+                        {
+                            "name": "episode_id",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        },
+                        {
+                            "name": "posted_at",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        },
+                        {
+                            "name": "text",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        },
+                        {
+                            "name": "user_id",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        },
+                        {
+                            "name": "user_name",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        },
+                        {
+                            "name": "user_icon_image_url",
+                            "description": null,
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                }
+                            },
+                            "defaultValue": null
+                        }
+                    ],
+                    "interfaces": null,
+                    "enumValues": null,
+                    "possibleTypes": null
+                },
+                {
                     "kind": "OBJECT",
                     "name": "Subscription",
                     "description": null,
                     "fields": [
                         {
-                            "name": "subscribeToEventComments",
+                            "name": "onCreateOsadaAppsyncTestComment",
                             "description": null,
                             "args": [
                                 {
-                                    "name": "eventId",
+                                    "name": "episode_id",
                                     "description": null,
                                     "type": {
-                                        "kind": "NON_NULL",
-                                        "name": null,
-                                        "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "String",
-                                            "ofType": null
-                                        }
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
                                     },
                                     "defaultValue": null
                                 }
                             ],
                             "type": {
                                 "kind": "OBJECT",
-                                "name": "Comment",
+                                "name": "OsadaAppsyncTestComment",
                                 "ofType": null
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "onCreateOsadaAppsyncTestComments",
+                            "description": null,
+                            "args": [
+                                {
+                                    "name": "episode_id",
+                                    "description": null,
+                                    "type": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    },
+                                    "defaultValue": null
+                                }
+                            ],
+                            "type": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "OsadaAppsyncTestComment",
+                                    "ofType": null
+                                }
                             },
                             "isDeprecated": false,
                             "deprecationReason": null

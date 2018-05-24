@@ -1,62 +1,34 @@
-mutation AddEvent($name: String!, $when: String!, $where: String!, $description: String!){
-  createEvent(name:$name, when:$when, where:$where, description:$description){
-      ...Event
-}
-}
-
-mutation DeleteEvent($id: ID!) {
-  deleteEvent(id: $id) {
-    id
-    description
-    name
-  }
-}
-
-mutation CommentOnEvent($eventId: ID!, $content: String!, $createdAt: String!) {
-  commentOnEvent(eventId:$eventId, content:$content, createdAt:$createdAt) {
-    eventId
-    content
-    commentId
-    createdAt
-  }
-}
-
-query GetEvent($id:ID!) {
- getEvent(id:$id) {
-     ...Event
-	}
-}
-
-query ListEvents($limit: Int, $nextToken: String) {
-   listEvents(limit: $limit, nextToken: $nextToken) {
-       items {
-      ...Event
+query getComments($episode_id: Int!) {
+  listOsadaAppsyncTestComments(episodeId: $episode_id) {
+    items {
+      episode_id
+      posted_at
+      text
+      user_icon_image_url
+      user_name
+      user_id
     }
-    nextToken
-   }
-}
-
-subscription NewCommentOnEvent($eventId: String!) {
-  subscribeToEventComments(eventId: $eventId) {
-    eventId
-    commentId
-    content
-    createdAt
   }
 }
 
-fragment Event on Event {
-      id
-      description
-      name
-      when
-      where
-      comments {
-        items {
-          eventId
-          commentId
-          content
-          createdAt
-        }
-      }
+subscription NewCommentOnEpisode($episode_id: Int!) {
+  onCreateOsadaAppsyncTestComment(episode_id: $episode_id) {
+    episode_id
+    posted_at
+    text
+    user_icon_image_url
+    user_name
+    user_id
+  }
+}
+
+subscription NewCommentsOnEpisode {
+  onCreateOsadaAppsyncTestComments {
+    episode_id
+    posted_at
+    text
+    user_id
+    user_name
+    user_icon_image_url
+  }
 }
